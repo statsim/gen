@@ -3,20 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Port application</title>
+    <title>Gen. Generate synthetic data in the browser</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link type="text/css" rel="stylesheet" href="https://statsim.com/port/css/port.css" media="screen"/>
     <link rel="icon" type="image/png" href="https://statsim.com/app/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://statsim.com/app/images/favicon-16x16.png" sizes="16x16">
     <style>
-      a { color: #3030B7 }
+      a { color: #0eb400 }
       .status-bar { background: #f5f5f5 }
+      th { font-size: 11px; font-weight: 400; color: #999 }
+      .btn, .port-btn { background: #0eb400 }
+      .btn:hover, .port-btn:hover { background: #0C9800 }
+      .port-btn { background-image: linear-gradient(141deg, #81e948 0%, #0eb400 75%) }
+      .spinner-green, .spinner-green-only { border-color: #0eb400 }
       /*
-      .btn, .port-btn { background: #3030B7 }
-      .btn:hover, .port-btn:hover { background: #21218B }
       .file-field .btn { background: #BBB }
       .file-field .btn:hover { background: #AAA }
-      .spinner-green, .spinner-green-only { border-color: #3030B7 }
       */
     </style>
   </head>
@@ -26,7 +28,7 @@
       <div class="container">
         <div class="row">
           <div class="col s11" style="font-size: 14px;">
-            <a href="https://statsim.com/">StatSim</a> → App
+            <a href="https://statsim.com/">StatSim</a> → Gen
           </div>
           <div class="col s1" style="font-size: 13px; color: #AAA; text-align: right">
             0.0.1
@@ -38,8 +40,9 @@
     <div class="container">
       <div class="row">
         <div class="col m12">
-          <h4>Port application</h4>
-          <p>Description...</p>
+          <h4>Generate synthetic data in the browser</h4>
+          <p>Synthetic datasets for testing and exploration</p>
+
         </div>
       </div>
       <div class="row">
@@ -47,12 +50,29 @@
       </div>
       <div class="row">
         <div class="col m12">
+        <table class="responsive-table">
+          <thead>
+            <tr>
+              <th>Dataset</th>
+              <th>Type</th>
+              <th>Variables</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Friedman 1</td><td>Regression</td><td>10 + 1</td><td>y = 10 * sin(Pi * x1 * x2) + 20 * (x3 - 0.5) ** 2 + 10 * x4 + 5 * x5 + <i>e</i></td></tr>
+            <tr><td>Friedman 2</td><td>Regression</td><td>4 + 1</td><td>y = sqrt(x1 ** 2 + (x2 * x3 - 1 / (x2 * x4)) ** 2) + <i>e</i></td></tr>
+            <tr><td>Friedman 3</td><td>Regression</td><td>4 + 1</td><td>y = atan(x2 * x3 - 1 / (x2 * x4) / x1) + <i>e</i></td></tr>
+            <tr><td>Hastie</td><td>Classification</td><td>10 + 1</td><td>Binary classification problem used in Hastie et al</td></tr>
+            <tr><td>Moons</td><td>Classification</td><td>2 + 1</td><td>Two interleaving half circles</td></tr></tr>
+          </tbody>
+        </table>
           <small>
-            Based on <a href="https://github.com/statsim/port">port</a> and npm <a href="https://github.com/statsim/vis/blob/master/package.json">packages</a>
+            Based on <a href="https://github.com/statsim/port">port</a> and <a href="https://www.npmjs.com/package/mkdata">mkdata</a>
           </small>
           <p>
-            <a class="github-button" href="https://github.com/statsim/APP" data-icon="octicon-star" data-show-count="true" aria-label="Star statsim/APP on GitHub">Star</a>
-            <a class="github-button" href="https://github.com/statsim/APP/issues" data-icon="octicon-issue-opened" data-show-count="true" aria-label="Issue statsim/APP on GitHub">Issue</a>
+            <a class="github-button" href="https://github.com/statsim/gen" data-icon="octicon-star" data-show-count="true" aria-label="Star statsim/gen on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/statsim/gen/issues" data-icon="octicon-issue-opened" data-show-count="true" aria-label="Issue statsim/gen on GitHub">Issue</a>
           </p>
         </div>
       </div>
@@ -67,17 +87,24 @@
         schema: {
           "model": {
             "type": "function",
-            "container": "args",
-            "autorun": true,
-            "worker": true
-            "url": "main.js",
-            "name": "main",
+            "autorun": false,
+            "worker": true,
+            "url": "gen.js",
+            "name": "gen",
           },
           "inputs": [
-            { "type": "int", "name": "x" }
+            { "type": "select", "name": "Dataset type", "default": "Friedman 1", "options": [
+              "Friedman 1",
+              "Friedman 2",
+              "Friedman 3",
+              "Hastie",
+              "Moons"
+            ]},
+            { "type": "select", "name": "File format", "default": "CSV", "options": ["CSV", "JSON"]},
+            { "type": "int", "name": "Number of samples", "default": 1000}
           ],
           "outputs": [
-            { "type": "int", "name": "y" }
+            { "type": "file", "name": "file" },
           ]
         }
       })

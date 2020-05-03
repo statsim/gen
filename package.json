@@ -1,0 +1,29 @@
+{
+  "name": "gen",
+  "version": "0.0.1",
+  "description": "Generate synthetic data in the browser",
+  "main": "main.js",
+  "scripts": {
+    "build": "browserify src/main.js -s gen | uglifyjs -cm > gen.js",
+    "build-dev": "browserify src/main.js -s gen > gen.js",
+    "watch": "nodemon --watch src --ext js,css,html --exec 'npm run build-dev'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/statsim/gen.git"
+  },
+  "author": "Anton Zemlyansky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/statsim/gen/issues"
+  },
+  "homepage": "https://github.com/statsim/gen#readme",
+  "dependencies": {
+    "mkdata": "0.0.4"
+  },
+  "devDependencies": {
+    "browserify": "^16.5.1",
+    "uglify-es": "^3.3.9"
+  }
+}
