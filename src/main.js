@@ -15,7 +15,7 @@ module.exports = function gen (p) {
 
   let res
   if (params.format === 'csv') {
-    res = colNames.join(',') + '\n' + data.map(row => row.join(',') + '\n')
+    res = colNames.join(',') + '\n' + data.map(row => row.join(',')).join('\n') + '\n'
   } else {
     res = JSON.stringify({
       data: data.map(row => {
