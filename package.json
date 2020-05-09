@@ -1,6 +1,6 @@
 {
   "name": "gen",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Generate synthetic data in the browser",
   "main": "main.js",
   "scripts": {
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/statsim/gen#readme",
   "dependencies": {
-    "mkdata": "0.0.4"
+    "mkdata": "0.0.5"
   },
   "devDependencies": {
     "browserify": "^16.5.1",

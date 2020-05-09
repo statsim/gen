@@ -31,7 +31,7 @@
             <a href="https://statsim.com/">StatSim</a> → Gen
           </div>
           <div class="col s1" style="font-size: 13px; color: #AAA; text-align: right">
-            0.0.2
+            0.0.3
           </div>
         </div>
       </div>
@@ -63,8 +63,10 @@
             <tr><td>Friedman 1</td><td>Regression</td><td>10 + 1</td><td>y = 10 * sin(Pi * x1 * x2) + 20 * (x3 - 0.5) ** 2 + 10 * x4 + 5 * x5 + <i>e</i></td></tr>
             <tr><td>Friedman 2</td><td>Regression</td><td>4 + 1</td><td>y = sqrt(x1 ** 2 + (x2 * x3 - 1 / (x2 * x4)) ** 2) + <i>e</i></td></tr>
             <tr><td>Friedman 3</td><td>Regression</td><td>4 + 1</td><td>y = atan(x2 * x3 - 1 / (x2 * x4) / x1) + <i>e</i></td></tr>
+            <tr><td>Peak</td><td>Regression</td><td>10 + 1</td><td>Peak Benchmark Problem. From: <a href="https://cran.r-project.org/web/packages/mlbench/mlbench.pdf">mlbench</a></td></tr>
             <tr><td>Hastie</td><td>Classification</td><td>10 + 1</td><td>Binary classification problem used in Hastie et al</td></tr>
             <tr><td>Moons</td><td>Classification</td><td>2 + 1</td><td>Two interleaving half circles</td></tr></tr>
+            <tr><td>Ringnorm</td><td>Classification</td><td>10 + 1</td><td><a href="http://docs.salford-systems.com/BIAS_VARIANCE_ARCING.pdf">Breiman, L. (1996). Bias, variance, and arcing classifiers</a></td></tr></tr>
           </tbody>
         </table>
           <small>
@@ -97,8 +99,10 @@
               "Friedman 1",
               "Friedman 2",
               "Friedman 3",
+              "Peak",
               "Hastie",
-              "Moons"
+              "Moons",
+              "Ringnorm"
             ]},
             { "type": "select", "name": "File format", "default": "CSV", "options": ["CSV", "JSON"]},
             { "type": "int", "name": "Number of samples", "default": 1000}
