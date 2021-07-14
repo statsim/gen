@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Gen. Generate synthetic data in the browser</title>
+    <title>Generate synthetic data in the browser | StatSim Gen</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link type="text/css" rel="stylesheet" href="https://statsim.com/port/css/port.css" media="screen"/>
     <link rel="icon" type="image/png" href="https://statsim.com/app/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://statsim.com/app/images/favicon-16x16.png" sizes="16x16">
+    <link type="text/css" rel="stylesheet" href="https://statsim.com/assets/common.css" media="screen"/>
     <style>
       a { color: #1ba310 }
       .status-bar { background: #f5f5f5 }
@@ -27,11 +28,10 @@
     <div class="status-bar">
       <div class="container">
         <div class="row">
-          <div class="col s11" style="font-size: 14px;">
-            <a href="https://statsim.com/">StatSim</a> → Gen
-          </div>
-          <div class="col s1" style="font-size: 13px; color: #AAA; text-align: right">
-            0.0.4
+          <div class="col s12" style="font-size: 14px;">
+            <div id="menu"></div>
+            <a href="https://statsim.com/">StatSim</a> → <b>Gen</b>
+            <span class="version">Version: 0.0.2</span>
           </div>
         </div>
       </div>
@@ -40,16 +40,18 @@
     <div class="container">
       <div class="row">
         <div class="col m12">
-          <h4>Generate synthetic data in the browser</h4>
-          <p>Synthetic datasets for testing and exploration</p>
-
+          <h1>Generate synthetic data in the browser</h1>
+          <h2>Synthetic datasets for machine learning experiments</h2>
         </div>
       </div>
+
       <div class="row">
         <div id="port-container"></div>
       </div>
+
       <div class="row">
         <div class="col m12">
+        <h3>Supported datasets</h3>
         <table>
           <thead>
             <tr>
@@ -60,18 +62,49 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Friedman 1</td><td>Regression</td><td>10 + 1</td><td>y = 10 * sin(Pi * x1 * x2) + 20 * (x3 - 0.5) ** 2 + 10 * x4 + 5 * x5 + <i>e</i></td></tr>
-            <tr><td>Friedman 2</td><td>Regression</td><td>4 + 1</td><td>y = sqrt(x1 ** 2 + (x2 * x3 - 1 / (x2 * x4)) ** 2) + <i>e</i></td></tr>
-            <tr><td>Friedman 3</td><td>Regression</td><td>4 + 1</td><td>y = atan(x2 * x3 - 1 / (x2 * x4) / x1) + <i>e</i></td></tr>
-            <tr><td>Peak</td><td>Regression</td><td>10 + 1</td><td>Peak Benchmark Problem. From: <a href="https://cran.r-project.org/web/packages/mlbench/mlbench.pdf">mlbench</a></td></tr>
-            <tr><td>Hastie</td><td>Classification</td><td>10 + 1</td><td>Binary classification problem used in Hastie et al</td></tr>
-            <tr><td>Moons</td><td>Classification</td><td>2 + 1</td><td>Two interleaving half circles</td></tr></tr>
-            <tr><td>Spirals</td><td>Classification</td><td>2 + 1</td><td>Two entangled spirals</td></tr></tr>
-            <tr><td>Ringnorm</td><td>Classification</td><td>10 + 1</td><td><a href="http://docs.salford-systems.com/BIAS_VARIANCE_ARCING.pdf">Breiman, L. (1996). Bias, variance, and arcing classifiers</a></td></tr></tr>
+            <tr><td><b>Friedman 1</b></td><td>Regression</td><td>10 + 1</td><td>y = 10 * sin(Pi * x1 * x2) + 20 * (x3 - 0.5) ** 2 + 10 * x4 + 5 * x5 + <i>e</i></td></tr>
+            <tr><td><b>Friedman 2</b></td><td>Regression</td><td>4 + 1</td><td>y = sqrt(x1 ** 2 + (x2 * x3 - 1 / (x2 * x4)) ** 2) + <i>e</i></td></tr>
+            <tr><td><b>Friedman 3</b></td><td>Regression</td><td>4 + 1</td><td>y = atan(x2 * x3 - 1 / (x2 * x4) / x1) + <i>e</i></td></tr>
+            <tr><td><b>Peak</b></td><td>Regression</td><td>10 + 1</td><td>Peak Benchmark Problem. From: <a href="https://cran.r-project.org/web/packages/mlbench/mlbench.pdf">mlbench</a></td></tr>
+            <tr><td><b>Hastie</b></td><td>Classification</td><td>10 + 1</td><td>Binary classification problem used in Hastie et al</td></tr>
+            <tr><td><b>Moons</b></td><td>Classification</td><td>2 + 1</td><td>Two interleaving half circles</td></tr></tr>
+            <tr><td><b>Spirals</b></td><td>Classification</td><td>2 + 1</td><td>Two entangled spirals</td></tr></tr>
+            <tr><td><b>Ringnorm</b></td><td>Classification</td><td>10 + 1</td><td><a href="http://docs.salford-systems.com/BIAS_VARIANCE_ARCING.pdf">Breiman, L. (1996). Bias, variance, and arcing classifiers</a></td></tr></tr>
           </tbody>
         </table>
+        <br><br>
+      </div>
+
+      <div class="row features">
+        <div class="col m4 feature">
+          <h3>
+            Unlimited data size
+          </h3>
+          <p>
+            In the real world, data collection is almost always an expensive and complex process. Artificial data is an easier and faster alternative for testing statistical and machine learning methods. Until you have enough RAM and disk space, you can generate any number of records.
+          </p>
+        </div>
+        <div class="col m4 feature">
+          <h3>
+            Known generating functions
+          </h3>
+          <p>
+            In many practical cases, observations are noisy, and the data generating function is not fully known. That makes a model evaluation harder. Luckily all synthetic datasets have transparent rules and procedures under the hood. StatSim Gen uses <a href="https://github.com/zemlyansky/mkdata">mkdata</a>, an open-source library that has all its code publicly available on GitHub.
+          </p>
+        </div>
+        <div class="col m4 feature">
+          <h3>
+            Save results as CSV files
+          </h3>
+          <p>
+            The comma-separated format is probably the most popular for storing tabular data. Most data processing libs and programs support it. Just save results as a CSV file and then load it into another app. You can preview or profile CSV files using <a href="https://statsim.com/preview/">StatSim Preview</a> and <a href="https://statsim.com/profile/">StatSim Profile</a>, our free web apps. Or fit an XGBoost model in <a href="https://statsim.com/fit/">StatSim Fit</a>.
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
           <small>
-            Based on <a href="https://github.com/statsim/port">port</a> and <a href="https://www.npmjs.com/package/mkdata">mkdata</a>
+            If you enjoyed the app, star us on GitHub. To report errors, create an issue.<br>
           </small>
           <p>
             <a class="github-button" href="https://github.com/statsim/gen" data-icon="octicon-star" data-show-count="true" aria-label="Star statsim/gen on GitHub">Star</a>
@@ -84,6 +117,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://statsim.com/port/dist/port.js"></script>
+    <script src="https://statsim.com/assets/common.js"></script>
     <script>
       var port = new Port({
         portContainer: document.getElementById('port-container'),
