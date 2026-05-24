@@ -1,0 +1,48 @@
+{
+  "title": "StatSim Gen",
+  "model": {
+    "type": "function",
+    "url": "model.js",
+    "name": "gen",
+    "worker": true,
+    "autorun": false
+  },
+  "inputs": [
+    {
+      "type": "select",
+      "name": "dataset",
+      "title": "Dataset",
+      "default": "Friedman 1",
+      "options": [
+        "Friedman 1",
+        "Friedman 2",
+        "Friedman 3",
+        "Peak",
+        "Hastie",
+        "Moons",
+        "Spirals",
+        "Ringnorm"
+      ]
+    },
+    {
+      "type": "select",
+      "name": "format",
+      "title": "Format",
+      "default": "CSV",
+      "options": ["CSV", "JSON"]
+    },
+    {
+      "type": "int",
+      "name": "nSamples",
+      "title": "Rows",
+      "default": 1000,
+      "min": 1
+    }
+  ],
+  "outputs": [
+    {
+      "type": "file",
+      "name": "file"
+    }
+  ]
+}
