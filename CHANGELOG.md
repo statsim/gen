@@ -3,5 +3,6 @@
 ## 0.0.4 - 2026-05-24
 
 - Rebuilt StatSim Gen as a minimal JSEE app package.
+- Added the `statsim-gen` CLI for `npx @statsim/gen`.
 - Added `schema.json` and `model.js` as the maintained app source.
 - Bundled `mkdata` through JSEE for standalone HTML builds.

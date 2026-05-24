@@ -64,5 +64,7 @@ npm run serve
 From npm, after `@statsim/gen` is published:
 
 ```bash
-npx -p @jseeio/jsee -p @statsim/gen jsee @statsim/gen --serve
+npx @statsim/gen
+npx @statsim/gen -p 8080
+npx @statsim/gen -o gen.html --bundle
 ```

@@ -16,6 +16,7 @@
   "jsee": "schema.json",
   "sideEffects": false,
   "files": [
+    "bin/",
     "schema.json",
     "model.js",
     "README.md",
@@ -47,9 +48,10 @@
     "access": "public"
   },
   "dependencies": {
-    "mkdata": "0.0.6"
+    "mkdata": "0.0.6",
+    "@jseeio/jsee": "0.8.5"
   },
-  "devDependencies": {
-    "@jseeio/jsee": "0.8.4"
+  "bin": {
+    "statsim-gen": "./bin/gen.js"
   }
 }
