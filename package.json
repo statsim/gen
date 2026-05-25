@@ -1,6 +1,6 @@
 {
   "name": "@statsim/gen",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Generate synthetic tabular data with JSEE",
   "type": "commonjs",
   "main": "model.js",
@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "mkdata": "0.0.6",
-    "@jseeio/jsee": "0.8.6"
+    "@jseeio/jsee": "0.8.7"
   },
   "bin": {
     "statsim-gen": "./bin/gen.js"
